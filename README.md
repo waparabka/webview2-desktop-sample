@@ -32,14 +32,24 @@ cd ui
 npm run build # Сборка веб-приложения (появится в `third-party/ui/dist`)
 ```
 
-**4. Сборка C++ приложения**  
+**4. Настройка веб-интерфейса (Vue.js)**  
+Очень важно, что бы vue.config.js выглядел так (если используете интерфейс из ресурсов проекта)
+```
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true,
+  publicPath: 'res://'
+})
+```
+
+**5. Сборка C++ приложения**  
 ```
 cd ../..  # Возвращаемся в корень проекта
 cmake -B project -A Win32  # Генерация проекта для Visual Studio
 cmake --build project --config Release  # Компиляция (или открываем .sln в Visual Studio)
 ```
 
-**5. Запуск**  
+**6. Запуск**  
 После успешной компиляции исполняемый файл будет доступен в:  
 ```
 project/Release/w2ds.exe
